@@ -1,0 +1,33 @@
+# Compiled object files
+*.o
+*.obj
+
+# Compiled binary files
+*.exe
+*.out
+*.app
+
+# Debugging files
+*.dSYM/
+*.pdb
+
+# MinGW specific
+*.gch
+*.gcno
+*.gcda
+*.exe.stackdump
+
+# CMake build files
+/CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# IDE specific files
+.vscode/
+.idea/
+*.code-workspace
+
+# Other system files
+*.log
+*.tmp
