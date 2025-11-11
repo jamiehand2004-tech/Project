@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> //importing libraries needed for the program
 #include <fstream>
 #include <vector>
 #include <string>
@@ -8,21 +8,21 @@
 using namespace std;
 
 // Structures
-struct Question { //structure to hold question data
-    string question; //question text
-    vector<string> options;//possible answers
+struct Question { //structure to hold the question data
+    string question; //string for the question text
+    vector<string> options;//all possible answers in the parameters
     int correctAnswer;//index of correct answer
 };
 
 struct User {//structure to hold user data
-    string username;//username
-    string password;//password
-    int highScore;//highest score achieved
+    string username;//username of user
+    string password;//password of user
+    int highScore;//highest score achieved by user (saved for leaderboard)
 };
 
 class QuizSystem {//main quiz system class
 private://private members
-    vector<Question> questions; //list of questions
+    vector<Question> questions; //list of questions for the quiz
     map<string, User> users;    //map of username to User
     string currentUser;       //currently logged-in user
 
@@ -195,3 +195,7 @@ int main() {    //main function
 //FINAL ITERATION COUNT OF JAMIE (23/10/25)-(Current): 26
 //FINAL ITERATION COUNT OF JACK (23/10/25)-(Current): -
 //FINAL ITERATION COUNT OF RUBEN (23/10/25)-(Current): -
+
+// current problems to fix:
+// savestates for users and questions not loading on program start
+////save states not loaded across different logins from a user (when program is ran again) 
