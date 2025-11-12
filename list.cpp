@@ -25,13 +25,15 @@ A console application that allows users to take C++ quizzes and receive scores.
 Roles:
 
 - Quiz Logic: Implements the quiz-taking and scoring mechanics.
-
+    >Basic functionality done, needs refinement and better question handling.
 
 - User Management: Manages user accounts and score tracking.
-
+    >Basic registration and login done, needs testing and refinement. DOES NOT SAVE TO FILE YET.
 
 - User Interface: Designs the quiz navigation and displays results.
-
+    >Basic console interface done, needs polishing and better user prompts.
+    > Needs better error handling and input validation.
+    
 
 
 
