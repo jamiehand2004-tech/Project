@@ -128,8 +128,10 @@ int main() {    //main function
     int choice;   //variable to hold user choice
 
     while (true) {  //main loop
-        cout << "\n1. Register\n2. Login\n3. Add Question\n4. Take Quiz\n"  //prompt user for choice
-             << "5. Show Leaderboard\n6. Exit\nChoice: ";   //print menu
+        cout << "\n=== Quiz System ===" << endl; //print menu header
+        cout << "1. Register\n2. Login\n3. Add Question\n4. Take Quiz\n"  //prompt user for choice
+             << "5. Show Leaderboard\n6. Exit"
+             << "\nChoice: ";   //print menu
         cin >> choice;  //get user choice
 
         if (choice == 1) {  //register new user
