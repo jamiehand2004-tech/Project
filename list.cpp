@@ -10,7 +10,7 @@ A console application that allows users to take C++ quizzes and receive scores.
 
 - Create quizzes with multiple-choice questions
 ^ JD   >Need to generate sets of questions and answers, from file.
-^ JD  >figure out how to store them in text file.
+^ JD   >figure out how to store them in text file.
 
 - Allow users to take quizzes and see their scores
     >Implemented basic quiz-taking functionality. Needs polishing and better user interface.
