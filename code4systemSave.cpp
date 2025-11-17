@@ -128,6 +128,9 @@ the main function to use my system, only problem is the highScore system.
 priority list
 1. adding in multiple users using map and vectors most probs.
 
+game plan : finish and integration test, after which split of the functions from the main segment adding the the main funciton to the main.cpp file and creating a sep file for the code as a SaveRegLoginSystem.h file, 
+use #includes in the main file and boom job done. plan to ge thtis done this weekend week 10. 
+
 
 */
 
@@ -166,4 +169,5 @@ priority list
     //cout << "Score: " << loaded.score << endl; */
 
     
+
 
