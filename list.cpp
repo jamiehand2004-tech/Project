@@ -4,7 +4,7 @@
 
 A console application that allows users to take C++ quizzes and receive scores.
 
-- User registration and login
+- User registration and login (ruben)
 ^   >Mostly done, needs testing and refinement, and an implementation of save-state to file.
 ^   >Login system needs consistency and undesired errors fixed.
 
