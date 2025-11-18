@@ -40,7 +40,8 @@ User loadUser(){/// calling struct User, function name loadUser for loading from
 }
 
 
-
+void loginUser(){
+    
 
 
 int main(){ /// main function for this test
@@ -85,3 +86,4 @@ game plan : finish and integration test, after which split of the functions from
 use #includes in the main file and boom job done. plan to ge thtis done this weekend week 10. 
 
 */
+
