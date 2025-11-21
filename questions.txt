@@ -1,0 +1,15 @@
+Sample Question: What is the first letter of the English alphebet?
+A) A
+B) B
+C) C
+D) D
+E) E
+ANSWER: A
+
+Sample Question 2: How many numbers are in the English alphebet?
+A) 9
+B) 10
+C) 0
+D) 27
+E) 42
+ANSWER: C
