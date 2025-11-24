@@ -1,3 +1,5 @@
+// main code
+
 #include <iostream> //importing libraries needed for the program
 #include <fstream>
 #include <vector>
@@ -5,14 +7,14 @@
 #include <map>
 #include <algorithm>
 
+#include "add_question.h"
+#include "quiz_reader.h"
+#include "quiz_system.h"
+
 using namespace std;
 
 // Structures
-struct Question { //structure to hold the question data
-    string question; //string for the question text
-    vector<string> options;//all possible answers in the parameters
-    int correctAnswer;//index of correct answer
-};
+//Quiz question structure is now in "quiz_reader.h"
 
 struct User {//structure to hold user data
     string username;//username of user
@@ -47,8 +49,8 @@ public: //public members
         return false;         //return false
     }
 
-    void addQuestion(string question, vector<string> options, int correct) {    //add a new question
-        Question q = {question, options, correct};  //create question object
+    void addQuestion(string questionText, vector<string> options, int correct) {    //add a new question
+        Question q = {questionText, options, correct};  //create question object
         questions.push_back(q); //add to questions list
         saveQuestions();    //save questions to file
     }
@@ -61,7 +63,7 @@ public: //public members
 
         int score = 0;  //initialize score
         for (const auto& q : questions) {   //iterate through questions
-            cout << "\n" << q.question << endl;    //print question
+            cout << "\n" << q.text << endl;    //print question
             for (size_t i = 0; i < q.options.size(); i++) {  //print options
                 cout << i + 1 << ". " << q.options[i] << endl;  //print each option
             }   //end for
@@ -70,7 +72,7 @@ public: //public members
             cout << "Your answer (1-" << q.options.size() << "): "; //prompt for answer
             cin >> answer;  //get user answer
 
-            if (answer == q.correctAnswer) {    //check if answer is correct
+            if (answer - 1 == q.correctAnswer) {    //check if answer is correct
                 score++;    //increment score   
             }
         }
@@ -112,27 +114,42 @@ private:    //private helper functions
 
     void saveQuestions() {  //function to save questions to file
         ofstream file("questions.txt"); //open file
-        for (const auto& q : questions) {   //iterate through questions
-            file << q.question << endl;  //write question
-            file << q.options.size() << endl;   //write number of options
-            for (const auto& opt : q.options) {  //iterate through options
-                file << opt << endl;    //write each option
+        if (!file.is_open()) {   //check if file opened successfully
+            cout << "Error: could not open questions file for writing." << endl; //print error message
+            return; //return
+        }
+
+        for (const auto& q : questions) {       // iterate through questions
+            file << q.text << endl;             // write question
+            file << q.options.size() << endl;   // write number of options
+            for (const auto& opt : q.options) { // iterate through options
+                file << opt << endl;            // write each option
             }
             file << q.correctAnswer << endl;    //write correct answer index
         }
+        file.close();       // close file
     }
 };  
 
-int main() {    //main function
-    QuizSystem quiz;    //create quiz system object
+int main() {                                // main function
+    QuizSystem quiz;                        // create quiz system object
+    string questionsFile = "questions.txt"; // file to load questions from
+    string resultsFile = "reults.txt";      // file to save results to
+
+    quiz.loadFromFile(questionsFile); // load questions from file
+
     int choice;   //variable to hold user choice
 
     while (true) {  //main loop
         cout << "\n=== Quiz System ===" << endl; //print menu header
-        cout << "1. Register\n2. Login\n3. Add Question\n4. Take Quiz\n"  //prompt user for choice
-             << "5. Show Leaderboard\n6. Exit"
-             << "\nChoice: ";   //print menu
-        cin >> choice;  //get user choice
+        cout << "1. Register\n";
+        cout << "2. Login\n";
+        cout << "3. Add Question\n"; 
+        cout << "4. Take Quiz\n";
+        cout << "5. Show Leaderboard\n";
+        cout << "6. Exit\n";
+        cout << "Choice: ";     // print menu
+        cin >> choice;          // get user choice
 
         if (choice == 1) {  //register new user
             string username, password;  //variables to hold username and password
@@ -154,31 +171,12 @@ int main() {    //main function
                 cout << "Login failed!" << endl;    //print failure message
             }
         }
-        else if (choice == 3) {     //add new question
-            string question;    //variable to hold question text
-            vector<string> options; //vector to hold options
-            int correct, numOptions;    //variables for correct answer and number of options
-
-            cout << "Enter question: "; //prompt for question
-            cin.ignore();   //clear input buffer
-            getline(cin, question); //get question text
-            
-            cout << "Number of options: ";  //prompt for number of options
-            cin >> numOptions;  //get number of options
-            
-            cin.ignore();   //clear input buffer
-            for (int i = 0; i < numOptions; i++) {  //loop to get each option
-                string option;  //variable to hold option text
-                cout << "Option " << i + 1 << ": "; //prompt for option
-                getline(cin, option);   //get option text
-                options.push_back(option);  //add option to vector
-            }
-
-            cout << "Correct answer (1-" << numOptions << "): ";    //prompt for correct answer
-            cin >> correct; //get correct answer index
-
-            quiz.addQuestion(question, options, correct);   //add question to quiz system
+        else if (choice == 3) {             // add new question
+            addQuestion(questionsFile);   // calls addQuestion function from add_question.cpp
+            quiz = loadFromFile(questionsFile); // reload questions after adding new one
+            cout << "Question added and loaded .\n";
         }
+
         else if (choice == 4) { //take the quiz
             int score = quiz.takeQuiz();    //take quiz and get score
             cout << "Your score: " << score << endl;    //print score
@@ -188,6 +186,10 @@ int main() {    //main function
         }
         else if (choice == 6) { //exit program
             break; 
+        }
+
+        else {
+            cout << "Invalid option chosen. Please try again." << endl; // invalid choice message
         }
     }
 
