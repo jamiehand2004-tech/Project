@@ -1,4 +1,4 @@
-/*Final deliverables for project: (anything with a ^ needs to be done.)
+Final deliverables for project: (anything with a ^ needs to be done.)
 
 4. Multi-User Quiz Application
 
@@ -33,40 +33,3 @@ Roles:
 - User Interface: Designs the quiz navigation and displays results.
     >Basic console interface done, needs polishing and better user prompts.
     > Needs better error handling and input validation.
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
