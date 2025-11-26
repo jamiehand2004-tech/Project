@@ -24,9 +24,9 @@ struct User {//structure to hold user data
 
 class QuizSystem {//main quiz system class
 private://private members
-    vector<Question> questions; //list of questions for the quiz
-    map<string, User> users;    //map of username to User
-    string currentUser;       //currently logged-in user
+    vector<Question> questions; // list of questions for the quiz
+    map<string, User> users;    // map of username to User
+    string currentUser;         // currently logged-in user
 
 public: //public members
     bool registerUser(string username, string password) {   //register a new user  
@@ -134,7 +134,7 @@ private:    //private helper functions
 int main() {                                // main function
     QuizSystem quiz;                        // create quiz system object
     string questionsFile = "questions.txt"; // file to load questions from
-    string resultsFile = "reults.txt";      // file to save results to
+    string resultsFile = "results.txt";      // file to save results to
 
     quiz.loadFromFile(questionsFile); // load questions from file
 
@@ -173,7 +173,7 @@ int main() {                                // main function
         }
         else if (choice == 3) {             // add new question
             addQuestion(questionsFile);   // calls addQuestion function from add_question.cpp
-            quiz = loadFromFile(questionsFile); // reload questions after adding new one
+            quiz.loadFromFile(questionsFile); // reload questions after adding new one
             cout << "Question added and loaded .\n";
         }
 
