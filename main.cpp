@@ -6,7 +6,6 @@
 #include <string>
 #include <map>
 #include <algorithm>
-
 #include "add_question.h"
 #include "quiz_reader.h"
 #include "quiz_system.h"
