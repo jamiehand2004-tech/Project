@@ -1,5 +1,3 @@
-
-
 #ifndef QUIZ_SYSTEM_H
 #define QUIZ_SYSTEM_H
 
@@ -11,20 +9,18 @@ using namespace std;
 
 class QuizSystem {
 private:
-    vector<Question> questions;
+    vector<Question> questions;     // list of questions for the quiz
     
 public:
-    bool loadFromFile(const string &filename);
+    void loadFromFile(const string & filename); // load question from file
+    void saveToFile(const string & filename) const;   // save questions to file
 
-    bool saveToFile(const string &filename);
+    void addQuestion(const Question & q);   // added question to file
+    void addingQuestion(const string & filename);   // user added question to file
 
-    void addQuestion(const Question &q);
-    
-    void takeQuiz(const string &resultsFile);
+    int takeQuiz(const string & resultsFile, 
+                 const string & username);  // run the quiz
 
-    size_t count() const {
-        return questions.size();
-    }
 };
 
 #endif

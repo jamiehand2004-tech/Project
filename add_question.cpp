@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -7,8 +7,9 @@
 
 using namespace std;
 
-void addQuestion(const string& filename) {
+void addQuestion(const string & filename) {
     ofstream file(filename, ios::app);
+
     if (!file.is_open()) {
         cerr << "Error: could not open " << filename << "for writing. \n";
         return;
@@ -19,30 +20,30 @@ void addQuestion(const string& filename) {
     cout << "Enter the question: ";
     getline(cin, text);
 
-    int optionCount;
+    int numOptions;
     cout << "Enter number of options: ";
-    cin >> optionCount;
+    cin >> numOptions;
     cin.ignore();
 
-    vector<string> options(optionCount);
+    vector<string> options(numOptions);
 
-    for (int i = 0; i < optionCount; i++) {
+    for (int i = 0; i < numOptions; i++) {
         cout << "Enter option " << i + 1 << ": ";
         getline(cin, options[i]);
     }
 
     int correct;
-    cout << "Enter the correct option, number 1-" << optionCount <<": ";
+    cout << "Enter the correct option, number 1-" << numOptions <<": ";
     cin >> correct;
 
     file << text << "\n";
-    file << optionCount << "\n";
+    file << numOptions << "\n";
 
-    for (const auto& opt : options) 
-        file << opt << "\n";
+    for (const auto& opts : options) 
+        file << opts << "\n";
     
     file << correct - 1 << "\n"; //store as zero-based index
 
     
     cout << "Question added successfully.\n";
-}
+}*/

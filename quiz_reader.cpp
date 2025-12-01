@@ -1,5 +1,3 @@
-//
-
 #include "quiz_reader.h"
 #include <iostream>
 #include <fstream>
@@ -14,13 +12,12 @@ vector<Question> loadQuestions(const string& filename) {
     ifstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error opening file: " << filename << endl;
+        cerr << "Error opening file: " << filename << "\n";
         return questions;   // Failure to open file.
     }
 
     while (true) {
         Question q;
-
         if (!getline(file, q.text)) break;
         if (q.text.empty()) continue;       // Skip empty lines
 

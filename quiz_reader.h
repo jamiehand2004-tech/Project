@@ -13,6 +13,6 @@ struct Question {
     int correctAnswer;
 };
 
-vector<Question> loadQuestions(const string& filename);
+vector<Question> loadQuestions(const string & filename);
 
 #endif
