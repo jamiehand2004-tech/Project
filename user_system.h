@@ -17,21 +17,18 @@ class UserSystem {
 private:
     map<string, User> users; // map of username to User struct
     string currentUser;  // currently logged in user
-    void saveUsers();
-    void loadUsers();
-    
 public:
     UserSystem();
-    bool registerUser(const string & username, const string & password);
-    bool login(const string & username, const string & password);
-
     void loadUsers();
     void saveUsers();
-    
+
+    bool registerUser(const string & username, const string & password);
+    bool login(const string & username, const string & password);
     void updateHighScore(int score);
     void showLeaderboard() const;
     
-    string getCurrentUser() const;
+    string getCurrentUser() const { 
+        return currentUser; } 
     
 };
 
