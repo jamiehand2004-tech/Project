@@ -3,8 +3,6 @@
 #include <iostream> //importing libraries needed for the program
 #include "quiz_system.h"
 #include "user_system.h"
-#include "add_question.h"
-#include "SavingSystem.h"
 
 using namespace std;
 
@@ -29,14 +27,26 @@ int main() {
         cin >> choice;          // get user choice
 
         if (choice == 1) {  //register new user
-            RegisterUser()
-            }else {
-                cout << "Failed to register user.\n";
+            string username, password;  //variables to hold username and password
+            cout << "Username: ";   //prompt for username
+            cin >> username;    //get username
+            cout << "Password: ";   //prompt for password
+            cin >> password;    //get password
+            if (users.registerUser(username, password)) {// attempt registration
+                cout << "Registered successfully.\n";// registration successful
+            }else {// registration failed
+                cout << "Failed to register user.\n";// registration failed
             }
         }
         else if (choice == 2) { //login existing user
-            LoginSystem()
-                } else {cout << "Login failed!" << endl;    // login failed
+            string username, password;  //variables to hold username and password
+            cout << "Username: ";    //prompt for username
+            cin >> username;    //get username
+            cout << "Password: ";   //prompt for password
+            cin >> password;    //get password
+            if (users.login(username, password)) {   // attempt login
+                cout << "Login successful!" << endl;  }  //print success message
+            else cout << "Login failed!" << endl;    // login failed
         }
         else if (choice == 3) {             // add new question
             quiz.addingQuestion(questionsFile);   // calls addQuestion function from add_question.cpp
@@ -55,8 +65,12 @@ int main() {
         }
         else if (choice == 6) break; //exit program 
         else cout << "Invalid option chosen. Please try again." << endl; // invalid choice message
+        
     }
-    return 0;
+    return 0;// end of main loop
+while (!(cin >> choice)){ //input validation loop
+            cout << "Invalid input. Please enter a number: ";// prompt for valid input
+        }// end input validation loop
 }   //end main
 //end of file
 //FINAL ITERATION COUNT OF JAMIE (23/10/25)-(Current): 26
