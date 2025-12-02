@@ -5,3 +5,9 @@ b
 c
 d
 0
+What colour is the sky?
+3
+Green
+Blue
+Red
+1
