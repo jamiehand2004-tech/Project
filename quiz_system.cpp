@@ -39,7 +39,7 @@ void QuizSystem::addingQuestion(const string & filename) {
     }
     cin.ignore();
     Question q;
-    cout << "Enrer the question text: ";
+    cout << "Enter the question text: ";
     getline(cin, q.text);
 
     int numOptions;

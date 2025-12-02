@@ -4,6 +4,7 @@
 #include "quiz_system.h"
 #include "user_system.h"
 #include "add_question.h"
+#include "SavingSystem.h"
 
 using namespace std;
 
@@ -28,26 +29,14 @@ int main() {
         cin >> choice;          // get user choice
 
         if (choice == 1) {  //register new user
-            string username, password;  //variables to hold username and password
-            cout << "Username: ";   //prompt for username
-            cin >> username;    //get username
-            cout << "Password: ";   //prompt for password
-            cin >> password;    //get password
-            if (users.registerUser(username, password)) {
-                cout << "Registered successfully.\n";
+            RegisterUser()
             }else {
                 cout << "Failed to register user.\n";
             }
         }
         else if (choice == 2) { //login existing user
-            string username, password;  //variables to hold username and password
-            cout << "Username: ";    //prompt for username
-            cin >> username;    //get username
-            cout << "Password: ";   //prompt for password
-            cin >> password;    //get password
-            if (users.login(username, password)) {   // attempt login
-                cout << "Login successful!" << endl;  }  //print success message
-            else cout << "Login failed!" << endl;    // login failed
+            LoginSystem()
+                } else {cout << "Login failed!" << endl;    // login failed
         }
         else if (choice == 3) {             // add new question
             quiz.addingQuestion(questionsFile);   // calls addQuestion function from add_question.cpp
