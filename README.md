@@ -13,7 +13,7 @@ It's certainly been a harrowing few weeks, but we have created something that wo
 It is a Multi-User Quiz Application, with save-states for both users and questions/quizzes. 
 
 
-Description/Deliverables:
+## Description/Deliverables:
 
 A console application that allows users to take C++ quizzes and receive scores.
 - User registration and login
@@ -22,7 +22,7 @@ A console application that allows users to take C++ quizzes and receive scores.
 - Leaderboard to display top scores
 - Save quiz data and user scores to a file
 
-Roles:
+## Roles:
 
 - Quiz Logic: Implements the quiz-taking and scoring mechanics.
 - User Management: Manages user accounts and score tracking.
@@ -38,6 +38,10 @@ Enjoy!
 **Tech used:** C++ 
 
 Made on Visual Studio Code using C++, we learned alot about C++ over the course of the project. Through the use of .h and .cpp files, we were able to create a class system that pulled from the header files. This was able to improve upon previous iterations that we had in terms of the cleanliness and overall performance of the project.
+
+## Test Record:
+
+<img width="700" height="700" alt="Screenshot 2025-12-03 152940" src="https://github.com/user-attachments/assets/77bcb137-09cc-430f-bb1b-f80639d6e794" />
 
 
 ## Lessons Learned:
