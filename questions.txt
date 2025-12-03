@@ -1,0 +1,6 @@
+what colour is the sky
+3
+green
+red
+blue
+2

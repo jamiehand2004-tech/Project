@@ -1,82 +1,80 @@
-// main code
+// main code for the Quiz System application
 #include <fstream>
-#include <iostream> //importing libraries needed for the program
-#include "quiz_system.h"
-#include "user_system.h"
+#include <iostream> // input/output (cout, cin, cerr)
+#include "quiz_system.h" // quiz functionality and types
+#include "user_system.h" // user registration/login and leaderboard
 
 using namespace std;
 
 int main() {
-    UserSystem users;   // user system object
-    QuizSystem quiz;    // quiz system object
-    string questionsFile = "questions.txt"; // file to load questions from
-    string resultsFile = "results.txt";     // file to save results to
+    UserSystem users;   // manages user accounts and scores
+    QuizSystem quiz;    // manages questions and running quizzes
+    string questionsFile = "questions.txt"; // file where questions are stored
+    string resultsFile = "results.txt";     // file where quiz results are appended
 
-    quiz.loadFromFile(questionsFile); // load questions from file
+    // Load questions from disk into memory at startup
+    quiz.loadFromFile(questionsFile);
 
-    int choice;   //variable to hold user choice
-    while (true) {  //main loop
-        cout << "\n=== Quiz System ===" << endl; //print menu header
+    int choice;   // hold the user's menu selection
+    while (true) {  // main menu loop
+        cout << "\n=== Quiz System ===" << endl; // menu header
         cout << "1. Register\n";
         cout << "2. Login\n";
-        cout << "3. Add Question\n"; 
+        cout << "3. Add Question\n";
         cout << "4. Take Quiz\n";
         cout << "5. Leaderboard\n";
         cout << "6. Exit\n";
-        cout << "Choice: ";     // print menu
-        cin >> choice;          // get user choice
+        cout << "Choice: ";     // prompt for choice
+        cin >> choice;          // read numeric choice
 
-        if (choice == 1) {  //register new user
-            string username, password;  //variables to hold username and password
-            cout << "Username: ";   //prompt for username
-            cin >> username;    //get username
-            cout << "Password: ";   //prompt for password
-            cin >> password;    //get password
-            if (users.registerUser(username, password)) {// attempt registration
-                cout << "Registered successfully.\n";// registration successful
-            }else {// registration failed
-                cout << "Failed to register user.\n";// registration failed
+        if (choice == 1) {  // Register a new user
+            string username, password;
+            cout << "Username: ";
+            cin >> username;    // read username
+            cout << "Password: ";
+            cin >> password;    // read password
+            if (users.registerUser(username, password)) { // try to register
+                cout << "Registered successfully.\n"; // success message
+            } else {
+                cout << "Failed to register user.\n"; // failure message
             }
         }
-        else if (choice == 2) { //login existing user
-            string username, password;  //variables to hold username and password
-            cout << "Username: ";    //prompt for username
-            cin >> username;    //get username
-            cout << "Password: ";   //prompt for password
-            cin >> password;    //get password
-            if (users.login(username, password)) {   // attempt login
-                cout << "Login successful!" << endl;  }  //print success message
-            else cout << "Login failed!" << endl;    // login failed
+        else if (choice == 2) { // Login existing user
+            string username, password;
+            cout << "Username: ";
+            cin >> username;
+            cout << "Password: ";
+            cin >> password;
+            if (users.login(username, password)) { // attempt login
+                cout << "Login successful!" << endl; // success
+            } else {
+                cout << "Login failed!" << endl; // failure
+            }
         }
-        else if (choice == 3) {             // add new question
-            quiz.addingQuestion(questionsFile);   // calls addQuestion function from add_question.cpp
-            quiz.loadFromFile(questionsFile); // reload questions after adding new one
+        else if (choice == 3) { // Add a new question interactively
+            quiz.addingQuestion(questionsFile); // prompt user and append to file
+            quiz.loadFromFile(questionsFile);   // reload questions into memory
         }
-
-        else if (choice == 4) { //take the quiz
+        else if (choice == 4) { // Take the quiz (requires login)
             string currentUser = users.getCurrentUser();
-            if (currentUser.empty()) { cout << "Login first.\n"; continue; }
-            
-            int score = quiz.takeQuiz(resultsFile, currentUser);    //take quiz and get score
-            users.updateHighScore(score);    
-        }
-        else if (choice == 5) { //show leaderboard
-            users.showLeaderboard();  //display leaderboard
-        }
-        else if (choice == 6) break; //exit program 
-        else cout << "Invalid option chosen. Please try again." << endl; // invalid choice message
-        
-    }
-    return 0;// end of main loop
-while (!(cin >> choice)){ //input validation loop
-            cout << "Invalid input. Please enter a number: ";// prompt for valid input
-        }// end input validation loop
-}   //end main
-//end of file
-//FINAL ITERATION COUNT OF JAMIE (23/10/25)-(Current): 26
-//FINAL ITERATION COUNT OF JACK (23/10/25)-(Current): -
-//FINAL ITERATION COUNT OF RUBEN (23/10/25)-(Current): -
+            if (currentUser.empty()) { // no one logged in
+                cout << "Login first.\n";
+                continue; // back to menu
+            }
 
-// current problems to fix:
-// savestates for users and questions not loading on program start
-////save states not loaded across different logins from a user (when program is ran again) 
+            int score = quiz.takeQuiz(resultsFile, currentUser); // run quiz and get score
+            users.updateHighScore(score); // update stored high score if needed
+        }
+        else if (choice == 5) { // Show leaderboard
+            users.showLeaderboard();  // display top scores
+        }
+        else if (choice == 6) { // Exit the program
+            break;
+        }
+        else { // Invalid menu choice
+            cout << "Invalid option chosen. Please try again." << endl;
+        }
+    }
+
+    return 0; // normal exit
+}
